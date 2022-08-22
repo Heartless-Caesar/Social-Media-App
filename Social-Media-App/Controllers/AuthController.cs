@@ -58,14 +58,17 @@ public class AuthController : BaseController
         
         //CALCULATE USER HASH AND SALT FOR VERIFICATION
         using var hmac = new HMACSHA512(user.PasswordSalt);
-
+        
+        //GENERATE HASHED PASSWORD BASED ON THE LOGIN PASSWORD 
         var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(obj.Password));
-
+        
+        //COMPARING HASHES FOR LOGIN PASSWORD HASH AND DB PASSWORD HASH
         for (var i = 0; i < computedHash.Length; i++)
         {
             if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Password is incorrect");
         }
         
+        //RETURNS USER
         return user;
     }
     //VERIFY IF USERNAME IS ALREADY TAKEN
