@@ -5,9 +5,7 @@ using Social_Media_App.Entities;
 
 namespace Social_Media_App.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
+public class UsersController : BaseController
 {
     private readonly DataContext _context;
     
