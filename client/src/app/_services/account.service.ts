@@ -14,6 +14,17 @@ export class AccountService {
 
   constructor(private http: HttpClient) {}
 
+  register(model: any) {
+    return this.http.post(this.baseUrl + 'auth/register', model).pipe(
+      map((res: User) => {
+        if (res) {
+          localStorage.setItem('user', JSON.stringify(res));
+          this.currentUserSource.next(res);
+        }
+      })
+    );
+  }
+
   login(model: any) {
     return this.http.post(this.baseUrl + 'auth/login', model).pipe(
       map((res: User) => {
