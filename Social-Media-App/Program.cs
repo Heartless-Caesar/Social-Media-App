@@ -22,7 +22,7 @@ builder.Services.AddCors();
 /* Enable JWT token creation */
 builder.Services.AddScoped<ITokenService,TokenService>();
 
-/* Enable Authorization */
+/* Enable Authentication */
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
