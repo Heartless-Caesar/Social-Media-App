@@ -1,16 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Social-Media-App</a>
+    <a class="navbar-brand" routerLink="/">Social-Media-App</a>
     <div class="container-fluid">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0 mr-auto">
+      <ul
+        class="navbar-nav me-auto mb-2 mb-md-0 mr-auto"
+        *ngIf="accountService.currentUser$ | async"
+      >
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >People</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link">Lists</a>
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >Lists</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link">Messages</a>
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
         </li>
       </ul>
 
@@ -34,6 +43,7 @@
         (ngSubmit)="login()"
         autocomplete="off"
         *ngIf="(accountService.currentUser$ | async) === null"
+        style="margin-left: 60%"
       >
         <input
           class="form-control mr-sm-2"
